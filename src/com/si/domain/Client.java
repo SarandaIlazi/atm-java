@@ -14,11 +14,12 @@ public class Client {
     private String address;
     private Date birthday;
     private List<Account> accounts;
+    private int pinCode;
 
     public Client() {
     }
 
-    public Client(int id, String name, String surname, String city, String address, Date birthday, List<Account> accounts) {
+    public Client(int id, String name, String surname, String city, String address, Date birthday, List<Account> accounts, int pinCode) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -26,6 +27,7 @@ public class Client {
         this.address = address;
         this.birthday = birthday;
         this.accounts = accounts;
+        this.pinCode = pinCode;
     }
 
     public int getId() {
@@ -84,6 +86,14 @@ public class Client {
         this.accounts = accounts;
     }
 
+    public int getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -93,8 +103,11 @@ public class Client {
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
                 ", birthday=" + birthday +
+                ", accounts=" + accounts +
+                ", pinCode=" + pinCode +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {
