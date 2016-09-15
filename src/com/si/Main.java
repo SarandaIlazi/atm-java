@@ -25,9 +25,9 @@ public class  Main {
             System.out.println("PLease verify your data!");
         }
 
-       /* int defaultNum = 1;
+       int defaultNum = 1;
         int savingNum = 2;
-        int creditCardNum = 3;*/
+        int creditCardNum = 3
 
         Scanner scan3 = new Scanner(System.in);
 
