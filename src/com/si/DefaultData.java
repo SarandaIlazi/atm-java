@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created by Saranda Ilazi on 06/09/2016.
  */
-public class DeafultData {
+public class DefaultData {
 
-    private Client getDefaultClient() {
+     private static Client getDefaultClient() {
         Client client = new Client();
         client.setId(1);
         client.setName("Saranda");
@@ -20,13 +20,14 @@ public class DeafultData {
         client.setCity("Prizren");
         client.setAddress("Xhevat Berisha");
         client.setPinCode(0000);
+        client.setAccounts(getDefaultAccounts());
         return client;
     }
 
-    private List<Account> getDefaultAccounts() {
-        Account defaultAcc = new Account(1, 00000001, AccountType.DEFAULT, 0.0);
-        Account savingsAcc = new Account(1, 00000002, AccountType.SAVINGS,0.0);
-        Account creditAcc = new Account(1, 00000003, AccountType.CREDITCARD, 0.0);
+    private static List<Account> getDefaultAccounts() {
+        Account defaultAcc = new Account(1, "4101123456789101", AccountType.DEFAULT, 100.0);
+        Account savingsAcc = new Account(2, "4532257702999371", AccountType.SAVINGS, 2000.0);
+        Account creditAcc = new Account(3, "4024007189418535", AccountType.CREDITCARD, 500.0);
         List<Account> accounts = new ArrayList<Account>();
         accounts.add(defaultAcc);
         accounts.add(savingsAcc);
@@ -34,9 +35,7 @@ public class DeafultData {
         return accounts;
     }
 
-    public Client getClientData() {
-        Client client = getDefaultClient();
-        client.setAccounts(getDefaultAccounts());
-        return client;
+    public static Client getClientData() {
+        return getDefaultClient();
     }
 }

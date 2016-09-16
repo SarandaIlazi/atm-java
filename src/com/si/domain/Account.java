@@ -5,14 +5,14 @@ package com.si.domain;
  */
 public class Account {
     private int id;
-    private int accountNumber;
+    private String accountNumber;
     private AccountType accountType;
     private double amount;
 
     public Account() {
     }
 
-    public Account(int id, int accountNumber, AccountType accountType, double amount) {
+    public Account(int id, String accountNumber, AccountType accountType, double amount) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
@@ -27,11 +27,11 @@ public class Account {
         this.id = id;
     }
 
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -58,14 +58,14 @@ public class Account {
         Account account = (Account) o;
 
         if (id != account.id) return false;
-        return accountNumber == account.accountNumber;
+        return accountNumber.equals(account.accountNumber);
 
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + accountNumber;
+        result = 31 * result + accountNumber.hashCode();
         return result;
     }
 
@@ -73,10 +73,9 @@ public class Account {
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", accountNumber=" + accountNumber +
-                ", pinCode=" + pinCode +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", accountType=" + accountType +
+                ", amount=" + amount +
                 '}';
     }
-
 }
