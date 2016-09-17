@@ -25,7 +25,7 @@ public class DefaultData {
     }
 
     private static List<Account> getDefaultAccounts() {
-        Account defaultAcc = new Account(1, "4101123456789101", AccountType.DEFAULT, 100.0);
+        Account defaultAcc = new Account(1, "4101123456789101", AccountType.DEFAULT, 100.565);
         Account savingsAcc = new Account(2, "4532257702999371", AccountType.SAVINGS, 2000.0);
         Account creditAcc = new Account(3, "4024007189418535", AccountType.CREDITCARD, 500.0);
         List<Account> accounts = new ArrayList<Account>();
