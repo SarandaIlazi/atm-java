@@ -9,7 +9,7 @@ import com.si.service.ActionService;
 public class  Main {
 
     public static void main(String[] args) {
-     LOOP:  do {
+        do {
             Client client = DefaultData.getClientData();
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter your id: ");
@@ -63,15 +63,16 @@ public class  Main {
             } else {
                 System.out.println("Please verify your data!");
             }
+
+            //check program flow
             System.out.print("Do you want to continue? Press y for YES and n for NO: ");
             char continueAnswer = scanner.next().charAt(0);
-            if( continueAnswer == 'y'){
-                continue LOOP;
+           if( continueAnswer == 'y' || continueAnswer == 'Y'){
+                continue;
             }else{
-                break LOOP;
+                break;
             }
+
         } while (true);
-
-
     }
 }
