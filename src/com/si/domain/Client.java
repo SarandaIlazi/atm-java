@@ -14,12 +14,12 @@ public class Client {
     private String address;
     private Date birthday;
     private List<Account> accounts;
-    private int pinCode;
+    private String pinCode;
 
     public Client() {
     }
 
-    public Client(int id, String name, String surname, String city, String address, Date birthday, List<Account> accounts, int pinCode) {
+    public Client(int id, String name, String surname, String city, String address, Date birthday, List<Account> accounts, String pinCode) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -86,11 +86,11 @@ public class Client {
         this.accounts = accounts;
     }
 
-    public int getPinCode() {
+    public String getPinCode() {
         return pinCode;
     }
 
-    public void setPinCode(int pinCode) {
+    public void setPinCode(String pinCode) {
         this.pinCode = pinCode;
     }
 

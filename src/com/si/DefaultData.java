@@ -19,7 +19,7 @@ public class DefaultData {
         client.setSurname("Ilazi");
         client.setCity("Prizren");
         client.setAddress("Xhevat Berisha");
-        client.setPinCode(0000);
+        client.setPinCode("0000");
         client.setAccounts(getDefaultAccounts());
         return client;
     }
