@@ -2,7 +2,9 @@ package com.si.view;
 
 import com.si.Utils;
 import com.si.domain.Account;
+import javafx.beans.binding.ListBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,20 +40,22 @@ public class ConsoleOutput {
 
     public static Account askAccount(List<Account> clientAccounts) {
         int inputAccountNumber = 0;
+       // clientAccounts = new ArrayList<>();
         while (true) {
             System.out.println("Choose which account you want to use: ");
-            for (int i = 0; i < clientAccounts.size(); i++) {
-                System.out.println(i + 1 + " - " + clientAccounts.get(i).getAccountNumber() +
-                        "(" + clientAccounts.get(i).getAccountType() + ")");
+                for (int i = 0; i < clientAccounts.size(); i++) {
+                    System.out.println(i + 1 + " - " + clientAccounts.get(i).getAccountNumber() +
+                            "(" + clientAccounts.get(i).getAccountType() + ")");
+                }
+                System.out.print("Enter the number: ");
+                inputAccountNumber = ConsoleInput.readInt();
+                if (inputAccountNumber > clientAccounts.size() || clientAccounts.size() < 0) {
+                    System.out.println("Your choice is invalid.");
+                } else {
+                    break;
+                }
             }
-            System.out.print("Enter the number: ");
-            inputAccountNumber = ConsoleInput.readInt();
-            if (inputAccountNumber > clientAccounts.size() || clientAccounts.size() < 0) {
-                System.out.println("Your choice is invalid.");
-            } else {
-                break;
-            }
-        }
+
         return clientAccounts.get(inputAccountNumber - 1);
     }
 

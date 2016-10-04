@@ -20,7 +20,6 @@ public class DBConnection {
     public DBConnection() {
         connectDB();
     }
-    //private PreparedStatement statement = null;
 
     private boolean connectDB() {
         try {
@@ -37,33 +36,4 @@ public class DBConnection {
         }
         return true;
     }
-
-    /*public ResultSet executeQuery(String sql) {
-        ResultSet result = null;
-        try {
-            connectDB();
-            //Execute a query
-            statement = dbConnection.prepareStatement(sql);
-            System.out.println(sql);
-            return statement.executeQuery();
-        } catch (SQLException sq) {
-            System.out.println("Problem\n" + sq.getMessage());
-        } finally {
-            {
-                try {
-                    if (statement != null) {
-                        statement.close();
-                    }
-                } catch (SQLException se2) {
-                }
-                try {
-                    if (dbConnection != null)
-                        dbConnection.close();
-                } catch (SQLException se) {
-                    se.printStackTrace();
-                }
-            }
-        }
-        return result;
-    }*/
 }
