@@ -40,7 +40,6 @@ public class ConsoleOutput {
 
     public static Account askAccount(List<Account> clientAccounts) {
         int inputAccountNumber = 0;
-       // clientAccounts = new ArrayList<>();
         while (true) {
             System.out.println("Choose which account you want to use: ");
                 for (int i = 0; i < clientAccounts.size(); i++) {

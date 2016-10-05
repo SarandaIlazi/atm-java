@@ -17,9 +17,6 @@ import java.util.List;
  */
 public class ClientDao extends DBConnection {
 
-    public ClientDao() {
-    }
-
     public Client getClient(int id) {
         Client client = null;
         try {
@@ -29,6 +26,9 @@ public class ClientDao extends DBConnection {
             statement.setInt(1, id);
             ResultSet dbResult = statement.executeQuery();
 
+            if(!dbResult.next()){
+               return client;
+            }
             client = new Client();
             while (dbResult.next()) {
                 // Fill client attributes with DB Results
@@ -40,28 +40,13 @@ public class ClientDao extends DBConnection {
                 client.setBirthday(dbResult.getDate("birthday"));
                 client.setPinCode(dbResult.getString("pinCode"));
             }
+            AccountDao accountDao = new AccountDao();
+            client.setAccounts(accountDao.getClientAccounts(id));
 
-            // TODO: Extract the code for getting Account list to AccountDao method
-            sql = "SELECT * FROM account WHERE clientId=?;";
-            statement = dbConnection.prepareStatement(sql);
-            statement.setInt(1, id);
-            dbResult = statement.executeQuery();
-
-            List<Account> accountList = new ArrayList<Account>();
-            while (dbResult.next()) {
-                Account account = new Account();
-                account.setId(dbResult.getInt("id"));
-                account.setAccountNumber(dbResult.getString("accountNumber"));
-                account.setAmount(dbResult.getDouble("amount"));
-                account.setAccountType(AccountType.valueOf(dbResult.getString("accountType")));
-
-                accountList.add(account);
-            }
-            client.setAccounts(accountList);
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }
 
+        }
         return client;
     }
 }
