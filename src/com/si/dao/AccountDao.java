@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * Created by Saranda Ilazi on 05/10/2016.
@@ -43,5 +44,34 @@ public class AccountDao extends DBConnection {
         }
         return accountList;
     }
+
+    public void updateAmount(Account account) {
+        try {
+            String sql ="UPDATE account SET amount=? WHERE id=?";
+            PreparedStatement statement = dbConnection.prepareStatement(sql);
+            statement.setDouble(1, account.getAmount());
+            statement.setInt(2, account.getId());
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+    public double getAmount(Account account){
+        double amount = account.getAmount();
+        try{
+            String sql= "SELECT amount FROM account WHERE id=?";
+            PreparedStatement statement = dbConnection.prepareStatement(sql);
+            statement.setInt(1, account.getId());
+            ResultSet dbResult = statement.executeQuery();
+            while(dbResult.next()){
+                 amount = dbResult.getDouble("amount");
+            }
+
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return amount;
+    }
+
 }
 

@@ -2,9 +2,7 @@ package com.si.view;
 
 import com.si.Utils;
 import com.si.domain.Account;
-import javafx.beans.binding.ListBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -89,7 +87,7 @@ public class ConsoleOutput {
         System.out.println("Your balance is: " + Utils.formatAmount(amount));
     }
 
-    public static char askAnotherService() {
+    public static boolean askAnotherService() {
         char continueAnswer;
         while(true) {
             System.out.print("Do you want to continue? Press 'y' for YES and 'n' for NO: ");
@@ -100,10 +98,26 @@ public class ConsoleOutput {
                 break;
             }
         }
-        return continueAnswer;
+        return String.valueOf(continueAnswer).toLowerCase().equals("y");
     }
 
     public static void showInvalidLogin() {
-        System.out.println("Please verify your data!");
+        System.out.println("Invalid Login! No user found with the provided credentials");
+    }
+
+    public static boolean askRetryLogin() {
+        char continueAnswer;
+        while(true) {
+            showInvalidLogin();
+            System.out.println("Do you want to try again?");
+            System.out.println("Press 'y' for YES and 'n' for NO: ");
+            continueAnswer = ConsoleInput.readChar();
+            if(continueAnswer != 'y' && continueAnswer != 'n') {
+                System.out.println("You selected an invalid option, please try again.");
+            } else {
+                break;
+            }
+        }
+        return String.valueOf(continueAnswer).toLowerCase().equals("y");
     }
 }

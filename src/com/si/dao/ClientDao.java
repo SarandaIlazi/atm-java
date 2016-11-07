@@ -26,9 +26,11 @@ public class ClientDao extends DBConnection {
             statement.setInt(1, id);
             ResultSet dbResult = statement.executeQuery();
 
-            if(!dbResult.next()){
+            // TODO: FIX return null client if there are no results in ResultSet
+            // HINT: Check ResultSet results without using the next() method
+            /*if(!dbResult.next()){
                return client;
-            }
+            }*/
             client = new Client();
             while (dbResult.next()) {
                 // Fill client attributes with DB Results
