@@ -11,10 +11,12 @@ public class UserController {
 
     public Client authenticate() {
         // TODO: FIX retry login mechanism
+
         int inputId = ConsoleOutput.askId();
         String inputPinCode = ConsoleOutput.askPin();
 
         ClientService clientService = new ClientService();
         return clientService.login(inputId, inputPinCode);
+
     }
 }

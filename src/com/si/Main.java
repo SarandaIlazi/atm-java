@@ -11,15 +11,16 @@ public class Main {
     public static void main(String[] args) {
         UserController userController = new UserController();
         Client client = userController.authenticate();
-        if(client == null) {
-            ConsoleOutput.showInvalidLogin();
-            System.exit(0);
+
+        while(client == null) {
+            if(!ConsoleOutput.askRetryLogin()) System.exit(0);
+            client = userController.authenticate();
         }
 
         while (true) {
             ATMController atmController = new ATMController();
             atmController.useATM(client);
-            if(!ConsoleOutput.askAnotherService()) break;
+            if(!ConsoleOutput.askAnotherService()) System.exit(0);
         }
     }
 }

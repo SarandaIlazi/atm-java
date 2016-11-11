@@ -17,8 +17,8 @@ import java.util.concurrent.locks.ReadWriteLock;
  */
 public class AccountDao extends DBConnection {
 
+
     public List<Account> getClientAccounts(int clientId) {
-        Account account = new Account();
         List<Account> accountList = null;
         try {
             String sql = "SELECT * FROM account WHERE clientId=?;";
@@ -26,12 +26,13 @@ public class AccountDao extends DBConnection {
             statement.setInt(1, clientId);
             ResultSet dbResult = statement.executeQuery();
 
-            if(!dbResult.next()){
+            if(!dbResult.isBeforeFirst()){
                 return accountList;
             }
 
             accountList = new ArrayList<Account>();
             while (dbResult.next()) {
+                Account account = new Account();
                 account.setId(dbResult.getInt("id"));
                 account.setAccountNumber(dbResult.getString("accountNumber"));
                 account.setAmount(dbResult.getDouble("amount"));

@@ -27,7 +27,7 @@ public class ConsoleOutput {
             System.out.println("Enter your pin code: ");
             pin = ConsoleInput.readString();
             // Validate pin (4 digits)
-            if (pin.length() != 4 || !pin.matches("[0-9]+") ) { // Pin should be 4 digits and not a letter
+            if (pin.length() != 4 || !pin.matches("[0-9]+")) { // Pin should be 4 digits and not a letter
                 System.out.println("Pin is not in valid format (4 digits) or is not a number!");
             } else {
                 break;
@@ -40,18 +40,18 @@ public class ConsoleOutput {
         int inputAccountNumber = 0;
         while (true) {
             System.out.println("Choose which account you want to use: ");
-                for (int i = 0; i < clientAccounts.size(); i++) {
-                    System.out.println(i + 1 + " - " + clientAccounts.get(i).getAccountNumber() +
-                            "(" + clientAccounts.get(i).getAccountType() + ")");
-                }
-                System.out.print("Enter the number: ");
-                inputAccountNumber = ConsoleInput.readInt();
-                if (inputAccountNumber > clientAccounts.size() || clientAccounts.size() < 0) {
-                    System.out.println("Your choice is invalid.");
-                } else {
-                    break;
-                }
+            for (int i = 0; i < clientAccounts.size(); i++) {
+                System.out.println(i + 1 + " - " + clientAccounts.get(i).getAccountNumber() +
+                        " (" + clientAccounts.get(i).getAccountType() + ")");
             }
+            System.out.print("Enter the number: ");
+            inputAccountNumber = ConsoleInput.readInt();
+            if (inputAccountNumber > clientAccounts.size() || clientAccounts.size() < 0) {
+                System.out.println("Your choice is invalid.");
+            } else {
+                break;
+            }
+        }
 
         return clientAccounts.get(inputAccountNumber - 1);
     }
@@ -89,10 +89,10 @@ public class ConsoleOutput {
 
     public static boolean askAnotherService() {
         char continueAnswer;
-        while(true) {
+        while (true) {
             System.out.print("Do you want to continue? Press 'y' for YES and 'n' for NO: ");
             continueAnswer = ConsoleInput.readChar();
-            if(continueAnswer != 'y' && continueAnswer != 'n') {
+            if (continueAnswer != 'y' && continueAnswer != 'n') {
                 System.out.println("You selected an invalid option, please try again.");
             } else {
                 break;
@@ -106,18 +106,20 @@ public class ConsoleOutput {
     }
 
     public static boolean askRetryLogin() {
-        char continueAnswer;
-        while(true) {
+        String continueAnswer;
+        while (true) {
             showInvalidLogin();
             System.out.println("Do you want to try again?");
             System.out.println("Press 'y' for YES and 'n' for NO: ");
-            continueAnswer = ConsoleInput.readChar();
-            if(continueAnswer != 'y' && continueAnswer != 'n') {
+            continueAnswer = String.valueOf(ConsoleInput.readChar());
+            if (!continueAnswer.toLowerCase().equals("y") && !continueAnswer.toLowerCase().equals("n")) {
                 System.out.println("You selected an invalid option, please try again.");
             } else {
                 break;
             }
         }
-        return String.valueOf(continueAnswer).toLowerCase().equals("y");
+        return continueAnswer.toLowerCase().equals("y");
     }
+
+
 }

@@ -8,7 +8,7 @@ import com.si.domain.Client;
  */
 public class ClientService {
 
-    public Client login(int id, String pinCode){
+    public Client login(int id, String pinCode) {
         ClientDao clientDao = new ClientDao();
         Client client = clientDao.getClient(id);
 
@@ -17,5 +17,7 @@ public class ClientService {
         } else {
             return null;
         }
+
+
     }
 }

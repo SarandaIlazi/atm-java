@@ -26,11 +26,10 @@ public class ClientDao extends DBConnection {
             statement.setInt(1, id);
             ResultSet dbResult = statement.executeQuery();
 
-            // TODO: FIX return null client if there are no results in ResultSet
-            // HINT: Check ResultSet results without using the next() method
-            /*if(!dbResult.next()){
-               return client;
-            }*/
+            if (!dbResult.isBeforeFirst()) {
+                return client;
+            }
+
             client = new Client();
             while (dbResult.next()) {
                 // Fill client attributes with DB Results
@@ -42,6 +41,7 @@ public class ClientDao extends DBConnection {
                 client.setBirthday(dbResult.getDate("birthday"));
                 client.setPinCode(dbResult.getString("pinCode"));
             }
+
             AccountDao accountDao = new AccountDao();
             client.setAccounts(accountDao.getClientAccounts(id));
 
